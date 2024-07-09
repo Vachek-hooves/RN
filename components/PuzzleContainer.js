@@ -1,49 +1,69 @@
 import {StyleSheet, View, Text} from 'react-native';
 import PuzzleUnitBox from './PuzzleUnitBox';
-// import {PUZZLE} from '../data/puzzles';
 import {useEffect, useState} from 'react';
+import {getSavedPuzzle, updatePuzzleData} from '../Utils';
 
-const PuzzleContainer = ({animal, animalImages}) => {
-  // const ANIMAL = PUZZLE.find(item => item.animal === 'fox');
-  const [twists, setTwists] = useState(Array(animalImages.length).fill(null));
-  // console.log(twists);
+const PuzzleContainer = ({animal}) => {
+  const [puzzleData, setPuzzleData] = useState([]);
+  const puzzleImages = puzzleData.images;
+  // const [twists, setTwists] = useState(Array(puzzleImages?.length).fill(null));
   const [win, setWin] = useState(false);
-  // if (!ANIMAL) {
-  //   return null;
-  // }
 
-  const handleTwist = (index, updatedTwist) => {
-    const newTwists = [...twists];
-    newTwists[index] = updatedTwist;
-    setTwists(newTwists);
+  const handleTwist = async (angle, id) => {
+    try {
+      await updatePuzzleData(animal, angle, id);
+      const updatedPuzzleData = await getSavedPuzzle(animal);
+      setPuzzleData(updatedPuzzleData);
+      checkIsWin(updatedPuzzleData.images);
+    } catch (error) {
+      console.log('Error updating puzzle data:', error);
+    }
   };
 
-  useEffect(() => {
-    if (twists.every(twist => twist === 0)) {
+  function checkIsWin(images) {
+    if (images?.every(image => parseInt(image.angle, 10) === 0)) {
       setWin(true);
     } else {
       setWin(false);
     }
-  }, [twists]);
+  }
+
+  useEffect(() => {
+    async function fetchPuzzleData() {
+      try {
+        const data = await getSavedPuzzle(animal);
+        if (data) {
+          console.log(data);
+          setPuzzleData(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchPuzzleData();
+  }, [animal]);
+
+  useEffect(() => {
+    checkIsWin(puzzleImages);
+  }, [puzzleImages]);
+
+  // useEffect(() => {
+  //   if (puzzleImages?.every(image => parseInt(image.angle, 10) === 0)) {
+  //     setWin(true);
+  //   } else {
+  //     setWin(false);
+  //   }
+  // }, [puzzleImages]);
 
   return (
-    <View
-      style={{
-        // width: '100%',
-        // height: '80%',
-        borderWidth: 1,
-        // padding: 3,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-      }}>
-      {animalImages.map((image, i) => (
+    <View style={styles.rootContainer}>
+      {puzzleImages?.map((image, i) => (
         <PuzzleUnitBox
           image={image.image}
           angle={image.angle}
-          key={i}
-          onTwist={updatedTwist => handleTwist(i, updatedTwist)}
+          key={image.imageId}
+          id={image.imageId}
+          onTwist={handleTwist}
         />
       ))}
       {win && <Text style={styles.winText}>You Win!</Text>}
@@ -60,5 +80,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'green',
+  },
+  rootContainer: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexWrap: 'wrap',
   },
 });

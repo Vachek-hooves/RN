@@ -5,21 +5,18 @@ import {
   TouchableWithoutFeedback,
   Image,
   Animated,
-  TouchableOpacity,
 } from 'react-native';
 
-const PuzzleUnitBox = ({image, angle, onTwist}) => {
+const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
   const initialAngle = parseInt(angle, 10);
   const [twist, setTwist] = useState(initialAngle);
   const scale = useRef(new Animated.Value(1)).current;
   const animatedTwist = useRef(new Animated.Value(initialAngle)).current;
   const displayAngle = useRef(new Animated.Value(0)).current;
 
-  // console.log('Initial Angle:', initialAngle);
-  // console.log('Current Twist:', twist);
 
   useEffect(() => {
-    onTwist(twist);
+    onTwist(twist, id);
   }, [twist]);
 
   useEffect(() => {
@@ -31,14 +28,8 @@ const PuzzleUnitBox = ({image, angle, onTwist}) => {
   }, [animatedTwist]);
 
   function twistPuzzle() {
-    // fn to
     const newAngle = twist + 90 >= 360 ? 0 : twist + 90;
     setTwist(newAngle);
-    // standart function to set new angle
-    // setTwist(prevState => {
-    //   const newAngle = prevState + 90;
-    //   return newAngle >= 360 ? 0 : newAngle;
-    // });
 
     Animated.timing(animatedTwist, {
       toValue: newAngle,
@@ -64,14 +55,6 @@ const PuzzleUnitBox = ({image, angle, onTwist}) => {
 
   return (
     <View>
-      {/* <TouchableOpacity
-        onPress={twistPuzzle}
-        style={{
-          margin: 3,
-          transform: [{rotate: `${twist}deg`}],
-        }}> */}
-      {/* <Image source={image} style={{width: 100, height: 100}} /> */}
-      {/* </TouchableOpacity> */}
       <TouchableWithoutFeedback
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}

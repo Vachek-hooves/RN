@@ -1,19 +1,14 @@
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {PuzzleContainer} from '../components';
 
 const PuzzleSingleLevelScreen = ({route}) => {
-  const levelData = route.params.data;
+  const ANIMAL = route.params.data.animal;
 
   return (
     <View>
-      <PuzzleContainer
-        animal={levelData.animal}
-        animalImages={levelData.images}
-      />
+      <PuzzleContainer animal={ANIMAL} />
     </View>
   );
 };
 
 export default PuzzleSingleLevelScreen;
-
-const styles = StyleSheet.create({});
