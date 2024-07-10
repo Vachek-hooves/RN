@@ -1,10 +1,15 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-
 import {savePuzzleToAsyncStorage, getSavedPuzzle} from '../../Utils';
+import {COLORS} from '../constants/colors';
+import {useEffect, useState} from 'react';
 
 const PuzzleLevelsGrid = ({data}) => {
+  const ANIMAL = data.animal.toUpperCase();
+  console.log(ANIMAL);
   const navigation = useNavigation();
+  // const [isLocked, setIsLocked] = useState(null);
+  const [isLocked, setIsLocked] = useState(data.animal === 'FOX' ? false : true);
 
   async function jumpToPuzzleLevel() {
     const existingData = await getSavedPuzzle(data.animal);
@@ -14,18 +19,61 @@ const PuzzleLevelsGrid = ({data}) => {
     navigation.navigate('PuzzleSingleLevelScreen', {data});
   }
 
+  useEffect(() => {
+    async function fetchPuzzleData() {
+      try {
+        const puzzle = await getSavedPuzzle(data.animal);
+        if (puzzle) {
+          // console.log(puzzle.isLocked);
+          setIsLocked(puzzle.isLocked);
+        } else {
+          console.log('data not existed');
+          console.log(puzzle);
+        }
+      } catch (error) {}
+    }
+    fetchPuzzleData();
+  }, [data.anima]);
+
   // function jumpToPuzzleLevel() {
   //   savePuzzleToAsyncStorage(data, data.animal);
   //   navigation.navigate('PuzzleSingleLevelScreen', {data});
   // }
+ 
 
   return (
-    <TouchableOpacity onPress={jumpToPuzzleLevel}>
-      <Text>{data.animal}</Text>
+    <TouchableOpacity
+      onPress={jumpToPuzzleLevel}
+      style={[
+        styles.btnStyle,
+        {
+          backgroundColor:
+            isLocked ?? false ? COLORS.yellow + 20 : COLORS.yellow,
+        },
+      ]}
+      disabled={isLocked ?? true}
+    >
+      <Text style={styles.btnText}>{ANIMAL}</Text>
     </TouchableOpacity>
   );
 };
 
 export default PuzzleLevelsGrid;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  btnStyle: {
+    borderWidth: 1,
+    padding: 10,
+    width: 350,
+    borderRadius: 50,
+    height: 70,
+    // backgroundColor: COLORS.yellow + 50,
+    marginVertical: 10,
+  },
+  btnText: {
+    fontWeight: '800',
+    fontSize: 32,
+    textAlign: 'center',
+    // color: COLORS.yellow,
+  },
+});

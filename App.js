@@ -13,9 +13,17 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="MainMenu" component={MainMenuScreen} />
+        <Stack.Screen
+          name="MainMenu"
+          component={MainMenuScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="RulesScreen" component={RulesScreen} />
-        <Stack.Screen name="LevelsScreen" component={LevelsScreen} />
+        <Stack.Screen
+          name="LevelsScreen"
+          component={LevelsScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="PuzzleSingleLevelScreen"
           component={PuzzleSingleLevelScreen}

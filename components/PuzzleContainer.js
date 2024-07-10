@@ -5,6 +5,7 @@ import {getSavedPuzzle, updatePuzzleData} from '../Utils';
 
 const PuzzleContainer = ({animal}) => {
   const [puzzleData, setPuzzleData] = useState([]);
+  const [puzzleInitialData, setPuzzleInitialData] = useState([]);
   const puzzleImages = puzzleData.images;
   // const [twists, setTwists] = useState(Array(puzzleImages?.length).fill(null));
   const [win, setWin] = useState(false);
@@ -23,6 +24,7 @@ const PuzzleContainer = ({animal}) => {
   function checkIsWin(images) {
     if (images?.every(image => parseInt(image.angle, 10) === 0)) {
       setWin(true);
+      
     } else {
       setWin(false);
     }
@@ -33,7 +35,7 @@ const PuzzleContainer = ({animal}) => {
       try {
         const data = await getSavedPuzzle(animal);
         if (data) {
-          console.log(data);
+          // console.log(data);
           setPuzzleData(data);
         }
       } catch (error) {

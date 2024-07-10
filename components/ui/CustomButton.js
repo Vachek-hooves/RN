@@ -3,7 +3,7 @@ import React from 'react';
 
 const CustomButton = ({children, btnStyle, onPressFn}) => {
   return (
-    <TouchableOpacity style={{btnStyle}} onPress={onPressFn}>
+    <TouchableOpacity style={[btnStyle, {}]} onPress={onPressFn}>
       {children}
     </TouchableOpacity>
   );
