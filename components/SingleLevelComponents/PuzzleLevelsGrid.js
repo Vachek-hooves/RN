@@ -4,9 +4,10 @@ import {savePuzzleToAsyncStorage, getSavedPuzzle} from '../../Utils';
 import {COLORS} from '../constants/colors';
 import {useEffect, useState} from 'react';
 
-const PuzzleLevelsGrid = ({data}) => {
+const PuzzleLevelsGrid = ({data, level}) => {
   const ANIMAL = data.animal.toUpperCase();
   const navigation = useNavigation();
+  const animal = data.animal;
   // const [isLocked, setIsLocked] = useState(
   //   data.animal === 'fox' ? false : true,
   // );
@@ -17,7 +18,7 @@ const PuzzleLevelsGrid = ({data}) => {
     // if (!existingData) {
     //   await savePuzzleToAsyncStorage(data, data.animal);
     // }
-    navigation.navigate('PuzzleSingleLevelScreen', {data});
+    navigation.navigate('PuzzleSingleLevelScreen', { level, animal});
   }
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const PuzzleLevelsGrid = ({data}) => {
         styles.btnStyle,
         {
           backgroundColor:
-            isLocked ?? false ? COLORS.yellow + 20 : COLORS.yellow,
+            isLocked ?? false ? COLORS.yellow + 40 : COLORS.yellow,
         },
       ]}
       disabled={isLocked ?? true}>
@@ -56,7 +57,7 @@ export default PuzzleLevelsGrid;
 
 const styles = StyleSheet.create({
   btnStyle: {
-    borderWidth: 1,
+    // borderWidth: 1,
     padding: 10,
     width: 350,
     borderRadius: 50,

@@ -6,9 +6,12 @@ import {COLORS} from '../components/constants/colors';
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {savePuzzleToAsyncStorage} from '../Utils';
+import {ReturnBtn} from '../components/ui';
 
-const LevelsScreen = () => {
+const LevelsScreen = ({route}) => {
+  const LEVEL = route.params?.level;
   const [puzzleData, setPuzzleData] = useState([]);
+
   useEffect(() => {
     const savePuzzlesToAsync = async () => {
       try {
@@ -34,20 +37,24 @@ const LevelsScreen = () => {
   }, []);
 
   function renderLevel({item}) {
-    return <PuzzleLevelsGrid data={item} />;
+    return <PuzzleLevelsGrid data={item} level={LEVEL} />;
   }
 
   return (
     <View style={styles.rootContainer}>
       <MainMenuHeader />
-      <SafeAreaView></SafeAreaView>
-      <FlatList
-        // data={PUZZLE}
-        data={puzzleData}
-        keyExtractor={item => item.animal}
-        renderItem={renderLevel}
-        showsVerticalScrollIndicator={false}
-      />
+      <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle}>
+        Main Menu
+      </ReturnBtn>
+      <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+        <FlatList
+          // data={PUZZLE}
+          data={puzzleData}
+          keyExtractor={item => item.animal}
+          renderItem={renderLevel}
+          showsVerticalScrollIndicator={false}
+        />
+      </SafeAreaView>
     </View>
   );
 };
@@ -56,11 +63,21 @@ export default LevelsScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     flex: 1,
     backgroundColor: COLORS.mainBg,
-    gap: 40,
-    paddingBottom: 30,
+    gap: 20,
+    // paddingBottom: 30,
   },
+  btnStyle: {
+    // borderWidth: 1,
+    padding: 10,
+    width: 125,
+    borderRadius: 50,
+    backgroundColor: COLORS.yellow,
+    // marginVertical: 20,
+    marginLeft: 30,
+  },
+  textStyle: {fontWeight: '800', fontSize: 16, textAlign: 'center'},
 });

@@ -3,6 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   LevelsScreen,
   MainMenuScreen,
+  ProfileScreen,
   PuzzleSingleLevelScreen,
   RulesScreen,
 } from './screens';
@@ -18,7 +19,11 @@ function App() {
           component={MainMenuScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="RulesScreen" component={RulesScreen} />
+        <Stack.Screen
+          name="RulesScreen"
+          component={RulesScreen}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="LevelsScreen"
           component={LevelsScreen}
@@ -27,6 +32,12 @@ function App() {
         <Stack.Screen
           name="PuzzleSingleLevelScreen"
           component={PuzzleSingleLevelScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

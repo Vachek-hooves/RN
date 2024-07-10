@@ -55,18 +55,34 @@ export const unlockNextPuzzle = async animal => {
     return null;
   }
   const animalNameToUnlock = PUZZLE[animalToUnlockIndex].animal;
-  console.log(animalNameToUnlock)
+  // console.log(animalNameToUnlock)
 
   try {
     const data = await AsyncStorage.getItem(animalNameToUnlock);
     if (!data) {
-      console.log('No data', data);
+      // console.log('No data', data);
       return null;
     }
     const jsonData = JSON.parse(data);
     const updatedPuzzleData = {...jsonData, isLocked: false};
-    console.log(updatedPuzzleData);
-    console.log(animalNameToUnlock)
+    // console.log(updatedPuzzleData);
+    // console.log(animalNameToUnlock)
     await savePuzzleToAsyncStorage(updatedPuzzleData, animalNameToUnlock);
   } catch (error) {}
+};
+
+export const resetPuzzleData = async animal => {
+  try {
+    const puzzleToReset = PUZZLE.find(puzzle => puzzle.animal === animal);
+    const data = await AsyncStorage.getItem(animal);
+    if (!data) {
+      return null;
+    }
+    const resetedPuzzle = {...puzzleToReset, isLocked: false};
+    await savePuzzleToAsyncStorage(resetedPuzzle, animal);
+    return resetedPuzzle;
+  } catch (error) {
+    console.log('Puzzle update error', error);
+    return null;
+  }
 };
