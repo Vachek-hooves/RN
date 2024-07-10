@@ -7,16 +7,16 @@ import {useEffect, useState} from 'react';
 const PuzzleLevelsGrid = ({data}) => {
   const ANIMAL = data.animal.toUpperCase();
   const navigation = useNavigation();
-  const [isLocked, setIsLocked] = useState(
-    data.animal === 'fox' ? false : true,
-  );
- console.log(isLocked)
+  // const [isLocked, setIsLocked] = useState(
+  //   data.animal === 'fox' ? false : true,
+  // );
+  const [isLocked, setIsLocked] = useState(data.isLocked);
 
   async function jumpToPuzzleLevel() {
-    const existingData = await getSavedPuzzle(data.animal);
-    if (!existingData) {
-      await savePuzzleToAsyncStorage(data, data.animal);
-    }
+    // const existingData = await getSavedPuzzle(data.animal);
+    // if (!existingData) {
+    //   await savePuzzleToAsyncStorage(data, data.animal);
+    // }
     navigation.navigate('PuzzleSingleLevelScreen', {data});
   }
 
@@ -34,7 +34,7 @@ const PuzzleLevelsGrid = ({data}) => {
       } catch (error) {}
     }
     fetchPuzzleData();
-  }, [data.animal]);
+  }, []);
 
   return (
     <TouchableOpacity
@@ -45,7 +45,6 @@ const PuzzleLevelsGrid = ({data}) => {
           backgroundColor:
             isLocked ?? false ? COLORS.yellow + 20 : COLORS.yellow,
         },
-
       ]}
       disabled={isLocked ?? true}>
       <Text style={styles.btnText}>{ANIMAL}</Text>

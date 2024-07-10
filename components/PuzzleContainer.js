@@ -1,9 +1,11 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import PuzzleUnitBox from './PuzzleUnitBox';
 import {useEffect, useState} from 'react';
 import {getSavedPuzzle, updatePuzzleData, unlockNextPuzzle} from '../Utils';
+import {useNavigation} from '@react-navigation/native';
 
 const PuzzleContainer = ({animal}) => {
+  const navigation = useNavigation();
   const [puzzleData, setPuzzleData] = useState([]);
   const puzzleImages = puzzleData.images;
   // const [twists, setTwists] = useState(Array(puzzleImages?.length).fill(null));
@@ -56,19 +58,32 @@ const PuzzleContainer = ({animal}) => {
   //   }
   // }, [puzzleImages]);
 
+  function toMainMenu() {
+    navigation.navigate('MainMenu');
+    navigation.navigate('LevelsScreen');
+  }
   return (
-    <View style={styles.rootContainer}>
-      {puzzleImages?.map((image, i) => (
-        <PuzzleUnitBox
-          image={image.image}
-          angle={image.angle}
-          key={image.imageId}
-          id={image.imageId}
-          onTwist={handleTwist}
-        />
-      ))}
-      {win && <Text style={styles.winText}>You Win!</Text>}
-    </View>
+    <>
+      <View style={styles.rootContainer}>
+        {puzzleImages?.map((image, i) => (
+          <PuzzleUnitBox
+            image={image.image}
+            angle={image.angle}
+            key={image.imageId}
+            id={image.imageId}
+            onTwist={handleTwist}
+          />
+        ))}
+        {win && <Text style={styles.winText}>You Win!</Text>}
+      </View>
+      <View>
+        {win && (
+          <TouchableOpacity onPress={toMainMenu}>
+            <Text>To main Manu</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    </>
   );
 };
 

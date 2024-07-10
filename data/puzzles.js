@@ -63,7 +63,7 @@ export const PUZZLE = [
     isLocked: true,
     animal: 'dog',
     images: [
-      {image: require('../assets/img/dog/1.jpg'), imageId: 1, angle: '0'},
+      {image: require('../assets/img/dog/1.jpg'), imageId: 1, angle: '90'},
       {image: require('../assets/img/dog/2.jpg'), imageId: 2, angle: '90'},
       {image: require('../assets/img/dog/3.jpg'), imageId: 3, angle: '180'},
       {image: require('../assets/img/dog/4.jpg'), imageId: 4, angle: '90'},

@@ -66,6 +66,7 @@ export const unlockNextPuzzle = async animal => {
     const jsonData = JSON.parse(data);
     const updatedPuzzleData = {...jsonData, isLocked: false};
     console.log(updatedPuzzleData);
-    // await savePuzzleToAsyncStorage(updatedPuzzleData, animalToUnlockIndex);
+    console.log(animalNameToUnlock)
+    await savePuzzleToAsyncStorage(updatedPuzzleData, animalNameToUnlock);
   } catch (error) {}
 };
