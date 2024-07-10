@@ -10,7 +10,9 @@ const RulesScreen = () => {
       <MainMenuHeader>
         <Text style={[styles.headerText, {color: 'black'}]}>Rules</Text>
       </MainMenuHeader>
-      <ReturnBtn>Return</ReturnBtn>
+      <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle}>
+        return
+      </ReturnBtn>
       <View style={styles.rulesContainer}>
         <Text style={[styles.headerText]}>
           Welcome to the Wonderful Animals Puzzle Game!{' '}
@@ -75,11 +77,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   btnStyle: {
-    borderWidth: 1,
+    // borderWidth: 1,
     padding: 10,
     width: 100,
     borderRadius: 50,
-    backgroundColor: COLORS.yellow,
+    backgroundColor: COLORS.yellow2,
     marginVertical: 20,
     marginLeft: 30,
   },

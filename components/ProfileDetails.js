@@ -5,20 +5,14 @@ import {COLORS} from './constants/colors';
 import {handleChangeImage, handleRenameUser} from '../Utils/profile';
 
 const ProfileDetails = ({user}) => {
-  
-
   const [nameChange, setNameChange] = useState(false);
   const [newName, setNewName] = useState(user.nick);
   const [image, setImage] = useState(user.photo);
 
-
   useEffect(() => {
-    async function setData() {
-      setNewName(user.name);
-      setImage(user.image);
-    }
-    setData();
-  }, []);
+    setNewName(user.nick);
+    setImage(user.photo);
+  }, [user]);
 
   function userRenameFn(text) {
     setNewName(text);
@@ -38,7 +32,7 @@ const ProfileDetails = ({user}) => {
       {nameChange ? (
         <View style={styles.renameContainer}>
           <MadeInput
-            label={'new name'}
+            label={'New nick'}
             style={{
               backgroundColor: COLORS.yellowLight,
               padding: 10,
@@ -59,7 +53,16 @@ const ProfileDetails = ({user}) => {
             btnContainer={{alignItems: 'center', justifyContent: 'center'}}
             btnText={{paddingTop: 20}}
             onPressFn={saveNewNameHandler}>
-            SAVE
+            <View style={{flex: 1, justifyContent: 'center', paddingTop: 25}}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  color: COLORS.yellow2,
+                  fontWeight: '800',
+                }}>
+                SAVE
+              </Text>
+            </View>
           </CustomButton>
         </View>
       ) : (
@@ -73,7 +76,6 @@ const ProfileDetails = ({user}) => {
             <Text>Change Photo</Text>
           ) : (
             <Image source={{uri: image[0]}} style={styles.image} />
-            // <Text>photo</Text>
           )}
         </View>
       </HandleImagePicker>
@@ -85,18 +87,26 @@ export default ProfileDetails;
 
 const styles = StyleSheet.create({
   rootContainer: {alignItems: 'center', padding: 20},
-  image: {width: '100%', height: '100%', borderRadius: 30, marginVertical: 20},
+  image: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 30,
+    marginVertical: 20,
+    borderWidth: 4,
+    borderColor: COLORS.yellow2
+  },
   renameContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 30,
   },
   textInput: {
-    borderWidth: 1,
+    borderWidth: 4,
     borderRadius: 12,
     paddingLeft: 5,
     padding: 4,
     width: 120,
+    borderColor: COLORS.yellow2
   },
   inputText: {
     textAlign: 'center',

@@ -14,13 +14,12 @@ import ProfileDetails from '../components/ProfileDetails';
 
 const ProfileScreen = ({navigation}) => {
   const [user, setUser] = useState(null);
-  console.log(user)
+  console.log(user);
 
   const [userInputs, setUserInputs] = useState({
     nick: '',
     photo: '',
   });
- 
 
   const dateId = () => {
     return Date.now().toString();
@@ -148,7 +147,8 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    backgroundColor: COLORS.mainBg,
+    // backgroundColor: COLORS.mainBg,
+    backgroundColor: COLORS.teal,
     flex: 1,
   },
   headerText: {
@@ -157,17 +157,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   btnStyle: {
-    // borderWidth: 1,
+    borderWidth: 3,
     padding: 10,
     width: 350,
     borderRadius: 50,
     height: 70,
-    backgroundColor: COLORS.yellow,
+    // backgroundColor: COLORS.yellow2,
     marginVertical: 10,
+    backgroundColor: '#31C6D4',
+    borderColor: COLORS.yellow2,
   },
   btnText: {
     fontWeight: '800',
     fontSize: 32,
     textAlign: 'center',
+    color: COLORS.yellow2,
   },
 });

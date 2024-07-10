@@ -4,6 +4,8 @@ export const COLORS = {
   yellowLight: '#EDFE84',
   teal: '#219C90',
   yellow2: '#FFFF00',
+  black: '#000000',
+  white: '#FCF8F3',
   // mainBg: '#5473DE',
   // yellow: '#EDDF62',
   // yellowLight: '#EDFE84',

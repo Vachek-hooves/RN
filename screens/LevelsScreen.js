@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
     // alignItems: 'center',
     flex: 1,
-    backgroundColor: COLORS.mainBg,
+    backgroundColor: COLORS.teal,
     gap: 20,
     // paddingBottom: 30,
   },

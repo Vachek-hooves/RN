@@ -18,7 +18,7 @@ const PuzzleLevelsGrid = ({data, level}) => {
     // if (!existingData) {
     //   await savePuzzleToAsyncStorage(data, data.animal);
     // }
-    navigation.navigate('PuzzleSingleLevelScreen', { level, animal});
+    navigation.navigate('PuzzleSingleLevelScreen', {level, animal});
   }
 
   useEffect(() => {
@@ -43,12 +43,17 @@ const PuzzleLevelsGrid = ({data, level}) => {
       style={[
         styles.btnStyle,
         {
-          backgroundColor:
-            isLocked ?? false ? COLORS.yellow + 40 : COLORS.yellow,
+          backgroundColor: isLocked ?? false ? COLORS.yellow + 20 : '#31C6D4',
         },
       ]}
       disabled={isLocked ?? true}>
-      <Text style={styles.btnText}>{ANIMAL}</Text>
+      <Text
+        style={[
+          styles.btnText,
+          {color: isLocked ?? false ? COLORS.black + 50 : COLORS.yellow2},
+        ]}>
+        {ANIMAL}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -57,18 +62,21 @@ export default PuzzleLevelsGrid;
 
 const styles = StyleSheet.create({
   btnStyle: {
-    // borderWidth: 1,
+    borderWidth: 4,
     padding: 10,
     width: 350,
     borderRadius: 50,
     height: 70,
     // backgroundColor: COLORS.yellow + 50,
     marginVertical: 10,
+    backgroundColor: '#31C6D4',
+    borderColor: COLORS.yellow2,
   },
   btnText: {
     fontWeight: '800',
     fontSize: 32,
     textAlign: 'center',
+    color: COLORS.yellow2,
     // color: COLORS.yellow,
   },
 });
