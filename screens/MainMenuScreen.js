@@ -1,5 +1,4 @@
 import {StyleSheet, Text, View} from 'react-native';
-import LevelsScreen from './LevelsScreen';
 import {CustomButton} from '../components/ui';
 import {COLORS} from '../components/constants/colors';
 import {MainMenuHeader} from '../components/MainMenu';

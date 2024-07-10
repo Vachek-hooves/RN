@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {PUZZLE} from '../data/puzzles';
 
 export const savePuzzleToAsyncStorage = async (data, key) => {
   try {
@@ -45,4 +46,26 @@ export const updatePuzzleData = async (animal, angle, puzzleImageId) => {
     console.log('Puzzle update error', error);
     return null;
   }
+};
+
+export const unlockNextPuzzle = async animal => {
+  const animalToUnlockIndex =
+    PUZZLE.findIndex(puzzle => puzzle.animal === animal) + 1;
+  if (animalToUnlockIndex >= PUZZLE.length) {
+    return null;
+  }
+  const animalNameToUnlock = PUZZLE[animalToUnlockIndex].animal;
+  console.log(animalNameToUnlock)
+
+  try {
+    const data = await AsyncStorage.getItem(animalNameToUnlock);
+    if (!data) {
+      console.log('No data', data);
+      return null;
+    }
+    const jsonData = JSON.parse(data);
+    const updatedPuzzleData = {...jsonData, isLocked: false};
+    console.log(updatedPuzzleData);
+    // await savePuzzleToAsyncStorage(updatedPuzzleData, animalToUnlockIndex);
+  } catch (error) {}
 };
