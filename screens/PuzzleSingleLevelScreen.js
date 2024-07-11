@@ -14,9 +14,11 @@ const PuzzleSingleLevelScreen = ({route}) => {
       <MainMenuHeader>
         <Text style={styles.headerText}>{ANIMAL.toUpperCase()}</Text>
       </MainMenuHeader>
-      <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle}>
-        return
-      </ReturnBtn>
+      <View style={{justifyContent: 'flex-start', width: '100%'}}>
+        <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle}>
+          return
+        </ReturnBtn>
+      </View>
       <View style={styles.puzzleContainer}>
         <PuzzleContainer animal={ANIMAL} level={LEVEL} />
       </View>
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: COLORS.mainBg,
     flex: 1,
-    alignItems:'center'
+    alignItems: 'center',
   },
   headerText: {
     textAlign: 'center',
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 60,
     width: 320,
-
   },
   btnStyle: {
     padding: 10,

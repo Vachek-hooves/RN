@@ -79,7 +79,7 @@ const ProfileScreen = ({navigation}) => {
           width: 125,
           borderRadius: 50,
           backgroundColor: COLORS.yellow,
-          marginVertical: 20,
+          marginVertical: 10,
           marginLeft: 30,
         }}
       />
@@ -87,7 +87,7 @@ const ProfileScreen = ({navigation}) => {
         {user ? (
           <View
             style={{
-              marginTop: 60,
+              marginTop: 10,
               justifyContent: 'center',
               alignItems: 'center',
             }}>
@@ -123,7 +123,7 @@ const ProfileScreen = ({navigation}) => {
                 btnStyle={{
                   alignItems: 'center',
                   backgroundColor: COLORS.yellowLight,
-                  marginVertical: 10,
+                  marginVertical: 5,
                   width: 200,
                   padding: 10,
                   borderRadius: 30,

@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: '800',
     textAlign: 'center',
-    marginVertical: 20,
+    marginVertical: 10,
   },
 });

@@ -37,10 +37,10 @@ const ProfileDetails = ({user}) => {
               backgroundColor: COLORS.yellowLight,
               padding: 10,
               borderRadius: 30,
-              width: 300,
+              width: 200,
               fontSize: 18,
             }}
-            styleContainer={{marginVertical: 25}}
+            styleContainer={{marginBottom: 10}}
             styleText={{
               color: COLORS.yellowLight,
               fontSize: 16,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   nameStyle: {
     fontSize: 32,
     // fontFamily: 'PlaywriteFRModerne-Light',
-    marginVertical: 10,
+    marginBottom: 10,
     color:COLORS.yellow2
   },
   imagePicker: {

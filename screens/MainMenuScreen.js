@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {CustomButton} from '../components/ui';
 import {COLORS} from '../components/constants/colors';
 import {MainMenuHeader} from '../components/MainMenu';
+import {resetAllPuzzles} from '../Utils';
 
 const MainMenuScreen = ({navigation}) => {
   function jumpToRulesScreen() {
@@ -13,6 +14,9 @@ const MainMenuScreen = ({navigation}) => {
   }
   function jumpToProfile() {
     navigation.navigate('ProfileScreen');
+  }
+  function resetAllPuzzlesHandle() {
+    resetAllPuzzles();
   }
 
   return (
@@ -35,6 +39,11 @@ const MainMenuScreen = ({navigation}) => {
           btnStyle={styles.btnStyle}>
           <Text style={styles.btnText}>Hard</Text>
         </CustomButton>
+        <CustomButton
+          onPressFn={() => resetAllPuzzlesHandle('hard')}
+          btnStyle={styles.btnStyle}>
+          <Text style={styles.btnText}>Reset All Game</Text>
+        </CustomButton>
       </View>
     </View>
   );
@@ -43,7 +52,7 @@ const MainMenuScreen = ({navigation}) => {
 export default MainMenuScreen;
 
 const styles = StyleSheet.create({
-  rootContainer: {flex: 1, backgroundColor: COLORS.teal, gap: 10},
+  rootContainer: {flex: 1, backgroundColor: COLORS.blue, gap: 10},
   btnContainer: {
     flex: 1,
     alignItems: 'center',
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     height: 70,
     // backgroundColor: COLORS.yellow,
-    backgroundColor: COLORS.blue,
+    backgroundColor: COLORS.teal,
     borderColor: COLORS.yellow2,
   },
   btnText: {

@@ -63,7 +63,7 @@ export default LevelsScreen;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.blue,
     gap: 20,
   },
   btnStyle: {

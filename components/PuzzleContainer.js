@@ -31,7 +31,7 @@ const PuzzleContainer = ({animal, level}) => {
     try {
       await resetPuzzleData(animal);
       const resetedPuzzleData = await getSavedPuzzle(animal);
-      setPuzzleData(resetedPuzzleData); 
+      setPuzzleData(resetedPuzzleData);
       navigation.navigate('MainMenu');
       console.log('PuzzleContainer', resetedPuzzleData);
     } catch (error) {
@@ -81,7 +81,7 @@ const PuzzleContainer = ({animal, level}) => {
 
   function toMainMenu() {
     navigation.navigate('MainMenu');
-    navigation.navigate('LevelsScreen');
+    navigation.navigate('LevelsScreen', {level});
   }
 
   return (
@@ -114,7 +114,7 @@ const PuzzleContainer = ({animal, level}) => {
         {win && (
           <View style={{alignItems: 'center', marginVertical: 10}}>
             <CustomButton onPressFn={toMainMenu} btnStyle={styles.btnStyle}>
-              <Text style={styles.btnText}>To All Puzzles</Text>
+              <Text style={styles.btnText}>Next Puzzle</Text>
             </CustomButton>
           </View>
         )}
@@ -126,7 +126,7 @@ const PuzzleContainer = ({animal, level}) => {
           }}>
           <CustomButton onPressFn={resetPuzzle} btnStyle={styles.resetBtn}>
             {/* <Text style={styles.resetText}>Reset & Go To All Puzzles</Text> */}
-            <Text style={styles.resetText}>Reset & Go To  Menu</Text>
+            <Text style={styles.resetText}>Reset & Go To Menu</Text>
           </CustomButton>
         </View>
       </View>
@@ -159,16 +159,16 @@ const styles = StyleSheet.create({
   btnStyle: {
     // borderWidth: 1,
     padding: 10,
-    width: 350,
+    width: '100%',
     borderRadius: 50,
-    height: 70,
+    // height: 70,
     backgroundColor: COLORS.yellow,
     alignItems: 'center',
     textAlign: 'center',
   },
   btnText: {
     fontWeight: '800',
-    fontSize: 32,
+    fontSize: 24,
     textAlign: 'center',
   },
   resetBtn: {

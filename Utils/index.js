@@ -86,3 +86,13 @@ export const resetPuzzleData = async animal => {
     return null;
   }
 };
+
+export const resetAllPuzzles = async () => {
+  try {
+    for (const puzzle of PUZZLE) {
+      console.log(puzzle);
+      console.log(puzzle.animal);
+      await savePuzzleToAsyncStorage(puzzle, puzzle.animal);
+    }
+  } catch (error) {}
+};

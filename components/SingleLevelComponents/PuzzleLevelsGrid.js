@@ -36,7 +36,7 @@ const PuzzleLevelsGrid = ({data, level}) => {
       style={[
         styles.btnStyle,
         {
-          backgroundColor: isLocked ?? false ? COLORS.yellow + 20 : '#31C6D4',
+          backgroundColor: isLocked ?? false ? COLORS.yellow + 20 : COLORS.teal,
         },
       ]}
       disabled={isLocked ?? true}>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   btnStyle: {
     borderWidth: 4,
     padding: 10,
-    width: 350,
+    width: 300,
     borderRadius: 50,
     height: 70,
     marginVertical: 10,
