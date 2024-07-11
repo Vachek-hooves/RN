@@ -36,8 +36,9 @@ const PuzzleContainer = ({animal, level}) => {
       await resetPuzzleData(animal);
       const resetedPuzzleData = await getSavedPuzzle(animal);
       setPuzzleData(resetedPuzzleData); // Оновлюємо стан компонента
-      navigation.navigate('LevelsScreen');
-      // navigation.navigate('PuzzleSingleLevelScreen', {level, animal});
+      navigation.navigate('MainMenu');
+      // navigation.navigate('LevelsScreen');
+      
       console.log('PuzzleContainer', resetedPuzzleData);
     } catch (error) {
       console.log('Error resetting puzzle:', error);
@@ -130,7 +131,8 @@ const PuzzleContainer = ({animal, level}) => {
             marginVertical: 10,
           }}>
           <CustomButton onPressFn={resetPuzzle} btnStyle={styles.resetBtn}>
-            <Text style={styles.resetText}>Reset & Go To All Puzzles</Text>
+            {/* <Text style={styles.resetText}>Reset & Go To All Puzzles</Text> */}
+            <Text style={styles.resetText}>Reset & Go To  Menu</Text>
           </CustomButton>
         </View>
       </View>

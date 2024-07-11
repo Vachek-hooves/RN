@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const ReturnBtn = ({children, btnStyle, textStyle}) => {
@@ -8,7 +8,11 @@ const ReturnBtn = ({children, btnStyle, textStyle}) => {
   }
   return (
     <TouchableOpacity onPress={returnHandle} style={btnStyle}>
-      <Text style={textStyle}>{children}</Text>
+      {/* <Text style={textStyle}>{children}</Text> */}
+      <Image
+        source={require('../../assets/img/icon/left-arrow.png')}
+        style={{width: 20, height: 20,alignSelf:'center'}}
+      />
     </TouchableOpacity>
   );
 };

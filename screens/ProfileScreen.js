@@ -7,6 +7,7 @@ import {
   HandleImagePicker,
   ImagePicker,
   MadeInput,
+  ReturnBtn,
 } from '../components/ui';
 import {fetchUserData, submitUserDataInputs} from '../Utils/profile';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -74,11 +75,21 @@ const ProfileScreen = ({navigation}) => {
       <MainMenuHeader>
         <Text style={styles.headerText}>User Profile</Text>
       </MainMenuHeader>
+      <ReturnBtn
+        btnStyle={{
+          padding: 10,
+          width: 125,
+          borderRadius: 50,
+          backgroundColor: COLORS.yellow,
+          marginVertical: 20,
+          marginLeft: 30,
+        }}
+      />
       <View>
         {user ? (
           <View
             style={{
-              marginTop: 100,
+              marginTop: 60,
               justifyContent: 'center',
               alignItems: 'center',
             }}>
