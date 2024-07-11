@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     height: 70,
     // backgroundColor: COLORS.yellow,
-    backgroundColor: '#31C6D4',
+    backgroundColor: COLORS.blue,
     borderColor: COLORS.yellow2,
   },
   btnText: {

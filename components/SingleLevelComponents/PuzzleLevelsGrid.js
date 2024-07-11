@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {savePuzzleToAsyncStorage, getSavedPuzzle} from '../../Utils';
+import { getSavedPuzzle} from '../../Utils';
 import {COLORS} from '../constants/colors';
 import {useEffect, useState} from 'react';
 
@@ -8,16 +8,10 @@ const PuzzleLevelsGrid = ({data, level}) => {
   const ANIMAL = data.animal.toUpperCase();
   const navigation = useNavigation();
   const animal = data.animal;
-  // const [isLocked, setIsLocked] = useState(
-  //   data.animal === 'fox' ? false : true,
-  // );
+
   const [isLocked, setIsLocked] = useState(data.isLocked);
 
   async function jumpToPuzzleLevel() {
-    // const existingData = await getSavedPuzzle(data.animal);
-    // if (!existingData) {
-    //   await savePuzzleToAsyncStorage(data, data.animal);
-    // }
     navigation.navigate('PuzzleSingleLevelScreen', {level, animal});
   }
 
@@ -26,11 +20,10 @@ const PuzzleLevelsGrid = ({data, level}) => {
       try {
         const puzzle = await getSavedPuzzle(data.animal);
         if (puzzle) {
-          // console.log(puzzle.isLocked);
           setIsLocked(puzzle.isLocked);
         } else {
-          // console.log('data not existed');
-          // console.log(puzzle);
+          console.log('data not existed');
+
         }
       } catch (error) {}
     }
@@ -67,7 +60,6 @@ const styles = StyleSheet.create({
     width: 350,
     borderRadius: 50,
     height: 70,
-    // backgroundColor: COLORS.yellow + 50,
     marginVertical: 10,
     backgroundColor: '#31C6D4',
     borderColor: COLORS.yellow2,
@@ -77,6 +69,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textAlign: 'center',
     color: COLORS.yellow2,
-    // color: COLORS.yellow,
   },
 });

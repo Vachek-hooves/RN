@@ -14,12 +14,8 @@ import {CustomButton, Timer} from './ui';
 const PuzzleContainer = ({animal, level}) => {
   const navigation = useNavigation();
   const [puzzleData, setPuzzleData] = useState([]);
-
-  // const puzzleImages = puzzleData.images;
   const [win, setWin] = useState(false);
   const [currentCount, setCurrentCount] = useState();
-  // console.log(puzzleImages);
-  // const [twists, setTwists] = useState(Array(puzzleImages?.length).fill(null));
 
   function handleTimerOut() {
     if (currentCount === 0 && !win) {
@@ -35,10 +31,8 @@ const PuzzleContainer = ({animal, level}) => {
     try {
       await resetPuzzleData(animal);
       const resetedPuzzleData = await getSavedPuzzle(animal);
-      setPuzzleData(resetedPuzzleData); // Оновлюємо стан компонента
+      setPuzzleData(resetedPuzzleData); 
       navigation.navigate('MainMenu');
-      // navigation.navigate('LevelsScreen');
-      
       console.log('PuzzleContainer', resetedPuzzleData);
     } catch (error) {
       console.log('Error resetting puzzle:', error);

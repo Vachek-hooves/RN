@@ -48,7 +48,6 @@ const LevelsScreen = ({route}) => {
       </ReturnBtn>
       <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
         <FlatList
-          // data={PUZZLE}
           data={puzzleData}
           keyExtractor={item => item.animal}
           renderItem={renderLevel}
@@ -63,20 +62,15 @@ export default LevelsScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     flex: 1,
     backgroundColor: COLORS.teal,
     gap: 20,
-    // paddingBottom: 30,
   },
   btnStyle: {
-    // borderWidth: 1,
     padding: 10,
     width: 125,
     borderRadius: 50,
     backgroundColor: COLORS.yellow,
-    // marginVertical: 20,
     marginLeft: 30,
   },
   textStyle: {fontWeight: '800', fontSize: 16, textAlign: 'center'},

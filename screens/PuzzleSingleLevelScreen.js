@@ -5,7 +5,6 @@ import {MainMenuHeader} from '../components/MainMenu';
 import {ReturnBtn} from '../components/ui';
 
 const PuzzleSingleLevelScreen = ({route}) => {
-  // const ANIMAL = route?.params?.data?.animal;
   const LEVEL = route?.params?.level;
   const ANIMAL = route.params.animal;
   console.log(route.params.animal);
@@ -41,10 +40,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 60,
     width: 320,
-    // flex: 1,
+
   },
   btnStyle: {
-    // borderWidth: 1,
     padding: 10,
     width: 100,
     borderRadius: 50,

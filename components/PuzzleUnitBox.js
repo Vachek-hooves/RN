@@ -22,7 +22,7 @@ const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
   useEffect(() => {
     Animated.timing(displayAngle, {
       toValue: animatedTwist,
-      duration: 500,
+      duration: 100,
       useNativeDriver: true,
     }).start();
   }, [animatedTwist]);
@@ -33,14 +33,14 @@ const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
 
     Animated.timing(animatedTwist, {
       toValue: newAngle,
-      duration: 500,
+      duration: 0,
       useNativeDriver: true,
     }).start();
   }
 
   const handlePressIn = () => {
     Animated.spring(scale, {
-      toValue: 1.1,
+      toValue: 1.4,
       useNativeDriver: true,
     }).start();
   };
@@ -67,7 +67,7 @@ const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
                 rotate: animatedTwist.interpolate({
                   inputRange: [0, 360],
                   outputRange: ['0deg', '360deg'],
-                  extrapolate: 'clamp', // This prevents the animation from "wrapping around"
+                  // extrapolate: 'clamp', // This prevents the animation from "wrapping around"
                 }),
               },
               {scale},

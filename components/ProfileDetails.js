@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginVertical: 20,
     borderWidth: 4,
-    borderColor: COLORS.yellow2
+    borderColor: COLORS.yellow2,
   },
   renameContainer: {
     flexDirection: 'row',
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     padding: 4,
     width: 120,
-    borderColor: COLORS.yellow2
+    borderColor: COLORS.yellow2,
   },
   inputText: {
     textAlign: 'center',
@@ -114,7 +114,9 @@ const styles = StyleSheet.create({
   },
   nameStyle: {
     fontSize: 32,
-    fontFamily: 'PlaywriteFRModerne-Light',
+    // fontFamily: 'PlaywriteFRModerne-Light',
+    marginVertical: 10,
+    color:COLORS.yellow2
   },
   imagePicker: {
     width: 180,

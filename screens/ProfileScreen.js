@@ -1,16 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {MainMenuHeader} from '../components/MainMenu';
 import {COLORS} from '../components/constants/colors';
 import {
   CustomButton,
   HandleImagePicker,
-  ImagePicker,
   MadeInput,
   ReturnBtn,
 } from '../components/ui';
-import {fetchUserData, submitUserDataInputs} from '../Utils/profile';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {fetchProfile, submitProfile} from '../Utils/profile';
 import ProfileDetails from '../components/ProfileDetails';
 
 const ProfileScreen = ({navigation}) => {
@@ -28,7 +26,7 @@ const ProfileScreen = ({navigation}) => {
 
   useEffect(() => {
     async function fetch() {
-      const data = await fetchUserData();
+      const data = await fetchProfile();
       setUser(data);
     }
     fetch();
@@ -59,8 +57,8 @@ const ProfileScreen = ({navigation}) => {
       return;
     }
     try {
-      await submitUserDataInputs(submitData);
-      const updatedData = await fetchUserData();
+      await submitProfile(submitData);
+      const updatedData = await fetchProfile();
       setUser(updatedData);
     } catch (error) {
       console.error('Failed to submit user data:', error);
@@ -100,7 +98,7 @@ const ProfileScreen = ({navigation}) => {
           </View>
         ) : (
           <View style={{alignItems: 'center'}}>
-            <View>
+            <View style={{alignItems: 'center'}}>
               <MadeInput
                 value={userInputs.nick}
                 onChangeText={value => inputsSave('nick', value)}
@@ -121,8 +119,15 @@ const ProfileScreen = ({navigation}) => {
               />
               <HandleImagePicker
                 saveImage={image => handleUserImage(image)}
-                style={{}}
-                btnStyle={{alignItems: 'center'}}>
+                style={{color: COLORS.blue, fontWeight: '600', fontSize: 18}}
+                btnStyle={{
+                  alignItems: 'center',
+                  backgroundColor: COLORS.yellowLight,
+                  marginVertical: 10,
+                  width: 200,
+                  padding: 10,
+                  borderRadius: 30,
+                }}>
                 Choose Photo
               </HandleImagePicker>
             </View>
@@ -135,18 +140,6 @@ const ProfileScreen = ({navigation}) => {
               onPressFn={resetUserInputs}>
               <Text style={styles.btnText}>Reset</Text>
             </CustomButton>
-            {/* <SingBtn
-              // positionStyle={{position: 'absolute', bottom: 220}}
-              positionStyle={{marginTop: 60}}
-              onPressFn={submit}>
-              Create User
-            </SingBtn>
-            <SingBtn
-              // positionStyle={{position: 'absolute', bottom: 150}}
-              positionStyle={{marginVertical: 20}}
-              onPressFn={resetUserInputs}>
-              Cancel
-            </SingBtn> */}
           </View>
         )}
       </View>
@@ -158,7 +151,6 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    // backgroundColor: COLORS.mainBg,
     backgroundColor: COLORS.teal,
     flex: 1,
   },
@@ -173,9 +165,8 @@ const styles = StyleSheet.create({
     width: 350,
     borderRadius: 50,
     height: 70,
-    // backgroundColor: COLORS.yellow2,
     marginVertical: 10,
-    backgroundColor: '#31C6D4',
+    backgroundColor: COLORS.blue,
     borderColor: COLORS.yellow2,
   },
   btnText: {

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const submitUserDataInputs = async userData => {
+export const submitProfile = async userData => {
   try {
     await AsyncStorage.setItem('user', JSON.stringify(userData));
   } catch (error) {
@@ -8,7 +8,7 @@ export const submitUserDataInputs = async userData => {
   }
 };
 
-export const fetchUserData = async () => {
+export const fetchProfile = async () => {
   try {
     const user = await AsyncStorage.getItem('user');
     const data = user ? JSON.parse(user) : null;
@@ -21,7 +21,7 @@ export const fetchUserData = async () => {
 
 export const handleRenameUser = async name => {
   try {
-    const user = await fetchUserData();
+    const user = await fetchProfile();
     user.name = name;
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (error) {
@@ -31,7 +31,7 @@ export const handleRenameUser = async name => {
 
 export const handleChangeImage = async image => {
   try {
-    const user = await fetchUserData();
+    const user = await fetchProfile();
     user.image = image;
     await AsyncStorage.setItem('user', JSON.stringify(user));
   } catch (error) {

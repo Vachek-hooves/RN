@@ -2,7 +2,6 @@ import CustomButton from './CustomButton';
 import ReturnBtn from './ReturnBtn';
 import Timer from './Timer';
 import MadeInput from './MadeInput';
-import ImagePicker from './ImagePicker';
 import HandleImagePicker from './HandleImagePicker';
 
 export {
@@ -10,6 +9,5 @@ export {
   ReturnBtn,
   Timer,
   MadeInput,
-  ImagePicker,
   HandleImagePicker,
 };
