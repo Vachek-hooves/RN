@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import { getSavedPuzzle} from '../../Utils';
+import {getSavedPuzzle} from '../../Utils';
 import {COLORS} from '../constants/colors';
 import {useEffect, useState} from 'react';
 
@@ -23,7 +23,6 @@ const PuzzleLevelsGrid = ({data, level}) => {
           setIsLocked(puzzle.isLocked);
         } else {
           console.log('data not existed');
-
         }
       } catch (error) {}
     }
@@ -57,12 +56,14 @@ const styles = StyleSheet.create({
   btnStyle: {
     borderWidth: 4,
     padding: 10,
-    width: 300,
+    width: 320,
     borderRadius: 50,
-    height: 70,
-    marginVertical: 10,
-    backgroundColor: '#31C6D4',
+    height: 75,
+    marginVertical: 16,
+    // backgroundColor: '#31C6D4',
     borderColor: COLORS.yellow2,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnText: {
     fontWeight: '800',

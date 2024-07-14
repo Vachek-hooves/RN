@@ -1,11 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Image,
-  Animated,
-} from 'react-native';
+import {View, TouchableWithoutFeedback, Image, Animated} from 'react-native';
 
 const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
   const initialAngle = parseInt(angle, 10);
@@ -13,7 +7,6 @@ const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
   const scale = useRef(new Animated.Value(1)).current;
   const animatedTwist = useRef(new Animated.Value(initialAngle)).current;
   const displayAngle = useRef(new Animated.Value(0)).current;
-
 
   useEffect(() => {
     onTwist(twist, id);
@@ -81,5 +74,3 @@ const PuzzleUnitBox = ({image, angle, onTwist, id}) => {
 };
 
 export default PuzzleUnitBox;
-
-const styles = StyleSheet.create({});

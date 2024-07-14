@@ -3,6 +3,8 @@ import ReturnBtn from './ReturnBtn';
 import Timer from './Timer';
 import MadeInput from './MadeInput';
 import HandleImagePicker from './HandleImagePicker';
+import ProfileIcon from './ProfileIcon';
+import ResetBtn from './ResetBtn';
 
 export {
   CustomButton,
@@ -10,4 +12,6 @@ export {
   Timer,
   MadeInput,
   HandleImagePicker,
+  ProfileIcon,
+  ResetBtn,
 };

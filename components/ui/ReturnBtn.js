@@ -1,4 +1,4 @@
-import {StyleSheet,TouchableOpacity, Image} from 'react-native';
+import {StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const ReturnBtn = ({btnStyle}) => {
@@ -10,7 +10,7 @@ const ReturnBtn = ({btnStyle}) => {
     <TouchableOpacity onPress={returnHandle} style={btnStyle}>
       <Image
         source={require('../../assets/img/icon/left-arrow.png')}
-        style={{width: 20, height: 20,alignSelf:'center'}}
+        style={{width: 20, height: 20, alignSelf: 'center'}}
       />
     </TouchableOpacity>
   );

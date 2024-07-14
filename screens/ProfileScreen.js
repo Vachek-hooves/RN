@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {MainMenuHeader} from '../components/MainMenu';
 import {COLORS} from '../components/constants/colors';
@@ -13,7 +13,6 @@ import ProfileDetails from '../components/ProfileDetails';
 
 const ProfileScreen = ({navigation}) => {
   const [user, setUser] = useState(null);
-  console.log(user);
 
   const [userInputs, setUserInputs] = useState({
     nick: '',
@@ -70,31 +69,22 @@ const ProfileScreen = ({navigation}) => {
 
   return (
     <View style={styles.rootContainer}>
-      <MainMenuHeader>
+      {/* <MainMenuHeader>
         <Text style={styles.headerText}>User Profile</Text>
-      </MainMenuHeader>
-      <ReturnBtn
-        btnStyle={{
-          padding: 10,
-          width: 125,
-          borderRadius: 50,
-          backgroundColor: COLORS.yellow,
-          marginVertical: 10,
-          marginLeft: 30,
-        }}
-      />
-      <View>
+      </MainMenuHeader> */}
+      <SafeAreaView style={{flex: 1, justifyContent: 'space-between'}}>
+        {/* <View> */}
         {user ? (
           <View
             style={{
-              marginTop: 10,
               justifyContent: 'center',
               alignItems: 'center',
+              marginTop: 120,
             }}>
             <ProfileDetails user={user} />
-            <CustomButton btnStyle={styles.btnStyle} onPressFn={toMainMenu}>
+            {/* <CustomButton btnStyle={styles.btnStyle} onPressFn={toMainMenu}>
               <Text style={styles.btnText}>Main Menu</Text>
-            </CustomButton>
+            </CustomButton> */}
           </View>
         ) : (
           <View style={{alignItems: 'center'}}>
@@ -103,31 +93,14 @@ const ProfileScreen = ({navigation}) => {
                 value={userInputs.nick}
                 onChangeText={value => inputsSave('nick', value)}
                 label={'Nick Name'}
-                style={{
-                  backgroundColor: COLORS.yellowLight,
-                  padding: 10,
-                  borderRadius: 30,
-                  width: 300,
-                  fontSize: 18,
-                }}
+                style={styles.inputStyle}
                 styleContainer={{marginVertical: 25}}
-                styleText={{
-                  color: COLORS.yellowLight,
-                  fontSize: 16,
-                  marginVertical: 5,
-                }}
+                styleText={styles.inputText}
               />
               <HandleImagePicker
                 saveImage={image => handleUserImage(image)}
                 style={{color: COLORS.blue, fontWeight: '600', fontSize: 18}}
-                btnStyle={{
-                  alignItems: 'center',
-                  backgroundColor: COLORS.yellowLight,
-                  marginVertical: 5,
-                  width: 200,
-                  padding: 10,
-                  borderRadius: 30,
-                }}>
+                btnStyle={styles.choosePhoto}>
                 Choose Photo
               </HandleImagePicker>
             </View>
@@ -142,7 +115,11 @@ const ProfileScreen = ({navigation}) => {
             </CustomButton>
           </View>
         )}
-      </View>
+        {/* </View> */}
+        <View style={{alignItems: 'flex-end', width: '100%'}}>
+          <ReturnBtn btnStyle={styles.rtnBtn} />
+        </View>
+      </SafeAreaView>
     </View>
   );
 };
@@ -151,8 +128,9 @@ export default ProfileScreen;
 
 const styles = StyleSheet.create({
   rootContainer: {
-    backgroundColor: COLORS.teal,
+    backgroundColor: COLORS.blue,
     flex: 1,
+    // justifyContent: 'space-between',
   },
   headerText: {
     textAlign: 'center',
@@ -162,11 +140,11 @@ const styles = StyleSheet.create({
   btnStyle: {
     borderWidth: 3,
     padding: 10,
-    width: 350,
+    width: 280,
     borderRadius: 50,
     height: 70,
     marginVertical: 10,
-    backgroundColor: COLORS.blue,
+    backgroundColor: COLORS.teal,
     borderColor: COLORS.yellow2,
   },
   btnText: {
@@ -174,5 +152,36 @@ const styles = StyleSheet.create({
     fontSize: 32,
     textAlign: 'center',
     color: COLORS.yellow2,
+  },
+  rtnBtn: {
+    height: 60,
+    padding: 10,
+    width: 60,
+    borderRadius: 50,
+    backgroundColor: COLORS.yellow2,
+    marginVertical: 30,
+    // marginLeft: 30,
+    justifyContent: 'center',
+    marginRight: 60,
+  },
+  choosePhoto: {
+    alignItems: 'center',
+    backgroundColor: COLORS.yellowLight,
+    marginVertical: 5,
+    width: 200,
+    padding: 10,
+    borderRadius: 30,
+  },
+  inputStyle: {
+    backgroundColor: COLORS.yellowLight,
+    padding: 10,
+    borderRadius: 30,
+    width: 250,
+    fontSize: 18,
+  },
+  inputText: {
+    color: COLORS.yellowLight,
+    fontSize: 16,
+    marginVertical: 5,
   },
 });

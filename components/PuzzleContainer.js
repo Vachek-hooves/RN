@@ -32,7 +32,7 @@ const PuzzleContainer = ({animal, level}) => {
       await resetPuzzleData(animal);
       const resetedPuzzleData = await getSavedPuzzle(animal);
       setPuzzleData(resetedPuzzleData);
-      navigation.navigate('MainMenu');
+      navigation.navigate('GameScreen');
       console.log('PuzzleContainer', resetedPuzzleData);
     } catch (error) {
       console.log('Error resetting puzzle:', error);
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   puzzleContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     flexWrap: 'wrap',
   },
   btnStyle: {

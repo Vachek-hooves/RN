@@ -113,14 +113,13 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   nameStyle: {
-    fontSize: 32,
-    // fontFamily: 'PlaywriteFRModerne-Light',
+    fontSize: 36,
     marginBottom: 10,
     color:COLORS.yellow2
   },
   imagePicker: {
-    width: 180,
-    height: 220,
+    width: 220,
+    height: 280,
     backgroundColor: COLORS.yellow + 10,
     borderRadius: 20,
     alignItems: 'center',

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   timerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 20,
+    marginBottom: 20,
     flexDirection: 'row',
   },
   timerText: {

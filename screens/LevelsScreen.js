@@ -6,7 +6,7 @@ import {COLORS} from '../components/constants/colors';
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {savePuzzleToAsyncStorage} from '../Utils';
-import {ReturnBtn} from '../components/ui';
+import {ResetBtn, ReturnBtn} from '../components/ui';
 
 const LevelsScreen = ({route}) => {
   const LEVEL = route.params?.level;
@@ -42,17 +42,16 @@ const LevelsScreen = ({route}) => {
 
   return (
     <View style={styles.rootContainer}>
-      <MainMenuHeader />
-      <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle}>
-        Main Menu
-      </ReturnBtn>
-      <SafeAreaView style={{flex: 1, alignItems: 'center'}}>
+      <SafeAreaView style={{flex: 1, alignItems: 'center',}}>
         <FlatList
           data={puzzleData}
           keyExtractor={item => item.animal}
           renderItem={renderLevel}
           showsVerticalScrollIndicator={false}
         />
+        <View style={{alignItems: 'flex-end', width: '100%'}}>
+          <ReturnBtn btnStyle={styles.btnStyle} textStyle={styles.textStyle} />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -64,14 +63,19 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     backgroundColor: COLORS.blue,
-    gap: 20,
+    // gap: 20,
+    paddingTop: 100,
   },
   btnStyle: {
+    height: 60,
     padding: 10,
-    width: 125,
+    width: 60,
     borderRadius: 50,
-    backgroundColor: COLORS.yellow,
-    marginLeft: 30,
+    backgroundColor: COLORS.yellow2,
+    marginVertical: 30,
+    // marginLeft: 30,
+    justifyContent: 'center',
+    marginRight: 60,
   },
   textStyle: {fontWeight: '800', fontSize: 16, textAlign: 'center'},
 });
