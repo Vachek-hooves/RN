@@ -1,15 +1,16 @@
 import {StyleSheet, View, Text} from 'react-native';
 import PuzzleUnitBox from './PuzzleUnitBox';
-import {PUZZLE} from '../data/puzzles';
+// import {PUZZLE} from '../data/puzzles';
 import {useEffect, useState} from 'react';
 
-const PuzzleContainer = () => {
-  const ANIMAL = PUZZLE.find(item => item.animal === 'fox');
-  const [twists, setTwists] = useState(Array(ANIMAL.images.length).fill(null));
+const PuzzleContainer = ({animal, animalImages}) => {
+  // const ANIMAL = PUZZLE.find(item => item.animal === 'fox');
+  const [twists, setTwists] = useState(Array(animalImages.length).fill(null));
+  // console.log(twists);
   const [win, setWin] = useState(false);
-  if (!ANIMAL) {
-    return null;
-  }
+  // if (!ANIMAL) {
+  //   return null;
+  // }
 
   const handleTwist = (index, updatedTwist) => {
     const newTwists = [...twists];
@@ -28,31 +29,16 @@ const PuzzleContainer = () => {
   return (
     <View
       style={{
-        width: '100%',
-        height: '80%',
-        borderWidth: 2,
-        padding: 3,
+        // width: '100%',
+        // height: '80%',
+        borderWidth: 1,
+        // padding: 3,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         flexWrap: 'wrap',
       }}>
-      {/* {ANIMAL.images.map((image, i) => (
-        <TouchableOpacity onPress={() => twistThisImage(image)}>
-          <Image
-            key={i}
-            source={image.image}
-            style={{
-              width: 100,
-              height: 100,
-              margin: 5,
-              transform: [{rotate: `${image.angle}deg`}],
-            }}
-          />
-        </TouchableOpacity>
-      ))} */}
-
-      {ANIMAL.images.map((image, i) => (
+      {animalImages.map((image, i) => (
         <PuzzleUnitBox
           image={image.image}
           angle={image.angle}
