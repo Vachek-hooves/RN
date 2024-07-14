@@ -1,66 +1,136 @@
 import {StyleSheet, View, Text} from 'react-native';
 import PuzzleUnitBox from './PuzzleUnitBox';
-import {PUZZLE} from '../data/puzzles';
-import {useEffect, useState} from 'react';
 
-const PuzzleContainer = () => {
-  const ANIMAL = PUZZLE.find(item => item.animal === 'fox');
-  const [twists, setTwists] = useState(Array(ANIMAL.images.length).fill(null));
+import {useEffect, useState} from 'react';
+import {
+  getSavedPuzzle,
+  updatePuzzleData,
+  unlockNextPuzzle,
+  resetPuzzleData,
+} from '../Utils';
+import {useNavigation} from '@react-navigation/native';
+import {COLORS} from './constants/colors';
+import {CustomButton, Timer} from './ui';
+
+const PuzzleContainer = ({animal, level}) => {
+  const navigation = useNavigation();
+  const [puzzleData, setPuzzleData] = useState([]);
   const [win, setWin] = useState(false);
-  if (!ANIMAL) {
-    return null;
+  const [currentCount, setCurrentCount] = useState();
+
+  function handleTimerOut() {
+    if (currentCount === 0 && !win) {
+      console.log('you loooser');
+    }
   }
 
-  const handleTwist = (index, updatedTwist) => {
-    const newTwists = [...twists];
-    newTwists[index] = updatedTwist;
-    setTwists(newTwists);
+  useEffect(() => {
+    handleTimerOut();
+  }, [currentCount, win]);
+
+  const resetPuzzle = async () => {
+    try {
+      await resetPuzzleData(animal);
+      const resetedPuzzleData = await getSavedPuzzle(animal);
+      setPuzzleData(resetedPuzzleData);
+      navigation.navigate('GameScreen');
+      console.log('PuzzleContainer', resetedPuzzleData);
+    } catch (error) {
+      console.log('Error resetting puzzle:', error);
+    }
   };
 
-  useEffect(() => {
-    if (twists.every(twist => twist === 0)) {
+  const handleTwist = async (angle, id) => {
+    try {
+      await updatePuzzleData(animal, angle, id);
+      const updatedPuzzleData = await getSavedPuzzle(animal);
+      setPuzzleData(updatedPuzzleData);
+      checkIsWin(updatedPuzzleData.images);
+    } catch (error) {
+      console.log('Error updating puzzle data:', error);
+    }
+  };
+
+  function checkIsWin(images) {
+    if (images?.every(image => parseInt(image.angle, 10) === 0)) {
       setWin(true);
+      unlockNextPuzzle(animal);
     } else {
       setWin(false);
     }
-  }, [twists]);
+  }
+
+  useEffect(() => {
+    async function fetchPuzzleData() {
+      try {
+        const data = await getSavedPuzzle(animal);
+        if (data) {
+          setPuzzleData(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchPuzzleData();
+  }, [animal]);
+
+  useEffect(() => {
+    if (puzzleData) {
+      checkIsWin(puzzleData.images);
+    }
+  }, [puzzleData]);
+
+  function toMainMenu() {
+    navigation.navigate('MainMenu');
+    navigation.navigate('LevelsScreen', {level});
+  }
 
   return (
-    <View
-      style={{
-        width: '100%',
-        height: '80%',
-        borderWidth: 2,
-        padding: 3,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-      }}>
-      {/* {ANIMAL.images.map((image, i) => (
-        <TouchableOpacity onPress={() => twistThisImage(image)}>
-          <Image
-            key={i}
-            source={image.image}
-            style={{
-              width: 100,
-              height: 100,
-              margin: 5,
-              transform: [{rotate: `${image.angle}deg`}],
-            }}
+    <View>
+      {level === 'hard' && !win && (
+        <Timer count={timer => setCurrentCount(timer)} />
+      )}
+      <View style={styles.puzzleContainer}>
+        {puzzleData?.images?.map((image, i) => (
+          <PuzzleUnitBox
+            image={image.image}
+            angle={image.angle}
+            key={image.imageId}
+            id={image.imageId}
+            onTwist={handleTwist}
           />
-        </TouchableOpacity>
-      ))} */}
+        ))}
+        {win && (
+          <View style={styles.messageContainer}>
+            <Text style={styles.winText}>You Won This Level!</Text>
+          </View>
+        )}
+        {currentCount === 0 && !win && (
+          <View style={styles.messageContainer}>
+            <Text style={styles.loseText}>LOOOOSER</Text>
+          </View>
+        )}
+      </View>
+      <View>
+        {win && (
+          <View style={{alignItems: 'center', marginVertical: 10}}>
+            <CustomButton onPressFn={toMainMenu} btnStyle={styles.btnStyle}>
+              <Text style={styles.btnText}>Next Puzzle</Text>
+            </CustomButton>
+          </View>
+        )}
 
-      {ANIMAL.images.map((image, i) => (
-        <PuzzleUnitBox
-          image={image.image}
-          angle={image.angle}
-          key={i}
-          onTwist={updatedTwist => handleTwist(i, updatedTwist)}
-        />
-      ))}
-      {win && <Text style={styles.winText}>You Win!</Text>}
+        <View
+          style={{
+            alignItems: 'center',
+            marginVertical: 10,
+          }}>
+          <CustomButton onPressFn={resetPuzzle} btnStyle={styles.resetBtn}>
+            {/* <Text style={styles.resetText}>Reset & Go To All Puzzles</Text> */}
+            <Text style={styles.resetText}>Reset & Go To Menu</Text>
+          </CustomButton>
+        </View>
+      </View>
     </View>
   );
 };
@@ -71,8 +141,52 @@ const styles = StyleSheet.create({
   winText: {
     position: 'absolute',
     top: '50%',
-    fontSize: 24,
+    fontSize: 32,
+    fontWeight: '700',
+    color: COLORS.mainBg,
+  },
+  loseText: {
+    // position: 'absolute',
+    fontSize: 42,
+    color: 'red',
     fontWeight: 'bold',
-    color: 'green',
+  },
+  puzzleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    // alignItems: 'center',
+    flexWrap: 'wrap',
+  },
+  btnStyle: {
+    // borderWidth: 1,
+    padding: 10,
+    width: '100%',
+    borderRadius: 50,
+    // height: 70,
+    backgroundColor: COLORS.yellow,
+    alignItems: 'center',
+    textAlign: 'center',
+  },
+  btnText: {
+    fontWeight: '800',
+    fontSize: 24,
+    textAlign: 'center',
+  },
+  resetBtn: {
+    // borderWidth: 1,
+    padding: 12,
+    borderRadius: 50,
+    backgroundColor: COLORS.yellow,
+  },
+  resetText: {fontWeight: '800', fontSize: 18, textAlign: 'center'},
+  messageContainer: {
+    position: 'absolute',
+    padding: 12,
+    height: 320,
+    width: 320,
+    backgroundColor: COLORS.yellow + 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+
   },
 });
