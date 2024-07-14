@@ -1,8 +1,6 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 
 const PuzzleSingleLevel = ({data, onPressFn}) => {
- 
   return (
     <TouchableOpacity onPress={onPressFn}>
       <Text>{data.animal}</Text>
@@ -11,5 +9,3 @@ const PuzzleSingleLevel = ({data, onPressFn}) => {
 };
 
 export default PuzzleSingleLevel;
-
-const styles = StyleSheet.create({});

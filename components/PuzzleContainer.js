@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     color: COLORS.mainBg,
   },
   loseText: {
-    // position: 'absolute',
     fontSize: 42,
     color: 'red',
     fontWeight: 'bold',
@@ -153,15 +152,12 @@ const styles = StyleSheet.create({
   puzzleContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    // alignItems: 'center',
     flexWrap: 'wrap',
   },
   btnStyle: {
-    // borderWidth: 1,
     padding: 10,
     width: '100%',
     borderRadius: 50,
-    // height: 70,
     backgroundColor: COLORS.yellow,
     alignItems: 'center',
     textAlign: 'center',
@@ -172,7 +168,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   resetBtn: {
-    // borderWidth: 1,
     padding: 12,
     borderRadius: 50,
     backgroundColor: COLORS.yellow,
