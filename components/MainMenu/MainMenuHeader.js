@@ -6,7 +6,7 @@ const MainMenuHeader = ({children}) => {
   return (
     <View style={styles.rootContainer}>
       <SafeAreaView>
-        <Text style={styles.text}>Wonderful Aminals Puzzle</Text>
+        <Text style={styles.text}>Wonderfull Puzzle</Text>
         {children}
       </SafeAreaView>
     </View>

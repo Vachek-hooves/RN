@@ -21,7 +21,7 @@ const RulesScreen = () => {
         <ScrollView>
           <View style={styles.rulesContainer}>
             <Text style={[styles.headerText]}>
-              Welcome to the Wonderful Animals Puzzle Game!{' '}
+              Welcome to the Wonderfull Puzzle Game!{' '}
             </Text>
             <Text style={styles.rulesText}>
               In this captivating puzzle game, you will embark on an adventure

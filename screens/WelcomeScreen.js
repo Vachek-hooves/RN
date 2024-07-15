@@ -18,7 +18,7 @@ const WelcomeScreen = ({navigation}) => {
       <Animated.View style={[{opacity: fadeAnimation}, styles.subContainer]}>
         <Text style={styles.mainText}>Discover </Text>
         {/* <Text style={styles.midText}>the</Text> */}
-        <Text style={styles.mainText}>Wonderful Animals Puzzle!</Text>
+        <Text style={styles.mainText}>Wonderfull Puzzle!</Text>
       </Animated.View>
     </View>
   );

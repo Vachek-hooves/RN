@@ -16,6 +16,21 @@ export const PUZZLE = [
   },
   {
     isLocked: true,
+    animal: 'sheep',
+    images: [
+      {image: require('../assets/img/sheep/1.jpg'), imageId: 1, angle: '180'},
+      {image: require('../assets/img/sheep/2.jpg'), imageId: 2, angle: '90'},
+      {image: require('../assets/img/sheep/3.jpg'), imageId: 3, angle: '270'},
+      {image: require('../assets/img/sheep/4.jpg'), imageId: 4, angle: '180'},
+      {image: require('../assets/img/sheep/5.jpg'), imageId: 5, angle: '90'},
+      {image: require('../assets/img/sheep/6.jpg'), imageId: 6, angle: '270'},
+      {image: require('../assets/img/sheep/7.jpg'), imageId: 7, angle: '180'},
+      {image: require('../assets/img/sheep/8.jpg'), imageId: 8, angle: '90'},
+      {image: require('../assets/img/sheep/9.jpg'), imageId: 9, angle: '180'},
+    ],
+  },
+  {
+    isLocked: true,
     animal: 'lion',
     images: [
       {image: require('../assets/img/lion/1.png'), imageId: 1, angle: '180'},
@@ -46,6 +61,21 @@ export const PUZZLE = [
   },
   {
     isLocked: true,
+    animal: 'flowers',
+    images: [
+      {image: require('../assets/img/flowers/1.jpg'), imageId: 1, angle: '0'},
+      {image: require('../assets/img/flowers/2.jpg'), imageId: 2, angle: '90'},
+      {image: require('../assets/img/flowers/3.jpg'), imageId: 3, angle: '180'},
+      {image: require('../assets/img/flowers/4.jpg'), imageId: 4, angle: '90'},
+      {image: require('../assets/img/flowers/5.jpg'), imageId: 5, angle: '90'},
+      {image: require('../assets/img/flowers/6.jpg'), imageId: 6, angle: '90'},
+      {image: require('../assets/img/flowers/7.jpg'), imageId: 7, angle: '0'},
+      {image: require('../assets/img/flowers/8.jpg'), imageId: 8, angle: '180'},
+      {image: require('../assets/img/flowers/9.jpg'), imageId: 9, angle: '90'},
+    ],
+  },
+  {
+    isLocked: true,
     animal: 'mouse',
     images: [
       {image: require('../assets/img/mouse/1.jpg'), imageId: 1, angle: '0'},
@@ -72,6 +102,21 @@ export const PUZZLE = [
       {image: require('../assets/img/dog/7.jpg'), imageId: 7, angle: '90'},
       {image: require('../assets/img/dog/8.jpg'), imageId: 8, angle: '180'},
       {image: require('../assets/img/dog/9.jpg'), imageId: 9, angle: '90'},
+    ],
+  },
+  {
+    isLocked: true,
+    animal: 'mushrooms',
+    images: [
+      {image: require('../assets/img/mushrooms/1.jpg'), imageId: 1, angle: '90'},
+      {image: require('../assets/img/mushrooms/2.jpg'), imageId: 2, angle: '90'},
+      {image: require('../assets/img/mushrooms/3.jpg'), imageId: 3, angle: '180'},
+      {image: require('../assets/img/mushrooms/4.jpg'), imageId: 4, angle: '90'},
+      {image: require('../assets/img/mushrooms/5.jpg'), imageId: 5, angle: '180'},
+      {image: require('../assets/img/mushrooms/6.jpg'), imageId: 6, angle: '180'},
+      {image: require('../assets/img/mushrooms/7.jpg'), imageId: 7, angle: '90'},
+      {image: require('../assets/img/mushrooms/8.jpg'), imageId: 8, angle: '180'},
+      {image: require('../assets/img/mushrooms/9.jpg'), imageId: 9, angle: '90'},
     ],
   },
   {
